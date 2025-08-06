@@ -53,7 +53,7 @@ int main() {
 
     // cálculo da densidade populacional e do PIB per capita da carta 1:
     densidade_populacional1 = populacao1 / area1;
-    PIB_per_capita1 = PIB1 / populacao1;
+    PIB_per_capita1 = (PIB1 * 1000000000.0f) / populacao1;
     
     //armazena os valores das variáveis da carta 2
     printf("\n\nCarta 2:\n");
@@ -74,7 +74,7 @@ int main() {
 
     // cálculo da densidade populacional e do PIB per capita da carta 2:
     densidade_populacional2 = populacao2 / area2;
-    PIB_per_capita2 = PIB2 / populacao2;
+    PIB_per_capita2 = (PIB2 * 1000000000.0f) / populacao2;
     
     // Exibição dos Dados das Cartas:
     // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.

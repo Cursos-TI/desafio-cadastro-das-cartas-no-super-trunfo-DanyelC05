@@ -124,7 +124,7 @@ int main() {
     
     //variáveis da carta 2
     char estado2, codigo_carta2[20], cidade2[50];
-    unsigned long populacao2;
+    unsigned long int populacao2;
     int pontos_turisticos2;
     double area2, PIB2, densidade_populacional2, PIB_per_capita2, super_poder2;
     

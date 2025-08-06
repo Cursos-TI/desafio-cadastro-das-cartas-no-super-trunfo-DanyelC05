@@ -10,8 +10,8 @@ void RegistrarCarta(
      char codigo_carta[20],
      char cidade [50],
      unsigned long int *populacao,
-     float *area,
-     float *PIB,
+     double *area,
+     double *PIB,
      int *pontos_turisticos
     ){
     printf("Digite código do Estado: ");
@@ -23,9 +23,9 @@ void RegistrarCarta(
     printf("Digite a população da Cidade: ");
     scanf(" %lu", populacao);
     printf("Digite a Área da Cidade (em Km²): ");
-    scanf(" %f", area);
+    scanf(" %lf", area);
     printf("Digite o PIB da Cidade: ");
-    scanf(" %f", PIB);
+    scanf(" %lf", PIB);
     printf("Digite quantos pontos turisticos a Cidade tem: ");
     scanf(" %d", pontos_turisticos);
 }
@@ -36,70 +36,70 @@ void ExibirCarta(
      char codigo_carta[20],
      char cidade [50],
      unsigned long int populacao,
-     float area,
-     float PIB,
+     double area,
+     double PIB,
      int pontos_turisticos,
-     float densidade_populacional,
-     float PIB_per_capita,
-     float super_poder
+     double densidade_populacional,
+     double PIB_per_capita,
+     double super_poder
     ){
     printf("Código do estado: %c\n", estado);
     printf("Código da carta: %s\n", codigo_carta);
     printf("Nome da Cidade: %s\n", cidade);
     printf("População da Cidade: %lu\n", populacao);
-    printf("Área da Cidade (em Km²): %.2f\n", area);
-    printf("PIB da Cidade: %.2f\n", PIB);
+    printf("Área da Cidade (em Km²): %.2lf\n", area);
+    printf("PIB da Cidade: %.2lf\n", PIB);
     printf("Pontos Turisticos: %d\n", pontos_turisticos);
-    printf("Densidade Populacional: %.2f habitantes/Km²\n", densidade_populacional);
-    printf("PIB per Capita: %.2f\n", PIB_per_capita);
-    printf("Super Poder: %.2f\n\n", super_poder);
+    printf("Densidade Populacional: %.2lf habitantes/Km²\n", densidade_populacional);
+    printf("PIB per Capita: %.2lf\n", PIB_per_capita);
+    printf("Super Poder: %.2lf\n\n", super_poder);
 }
 //função que calcula a densidade populacional
 // a densidade populacional é calculada como a população dividida pela área da cidade.
-float CalculoDensidadePopulacional(
+double CalculoDensidadePopulacional(
     unsigned long int populacao, 
-    float area
+    double area
 ){
     // verifica se a população ou a área são zero para evitar divisão por zero
-    if(populacao == 0 || area == 0.0f){
+    if(populacao == 0 || area == 0.0){
         printf("Não é possível fazer uma divisão por 0\n");
-        return 0.0f;
+        return 0.0;
     } else{
-        return populacao / area;
+        return (double) populacao / area;
     }
 }
 
 //função que calcula o PIB per capita
 // o PIB per capita é calculado como o PIB dividido pela população, multiplicado por 1 bilhão para expressar em unidades mais compreensíveis.
-float CalculoPIBPerCapita (
-    float PIB,
+double CalculoPIBPerCapita (
+    double PIB,
     unsigned long int populacao
 ){
     // verifica se a população ou o PIB são zero para evitar divisão por zero
-    if(populacao == 0 || PIB == 0.0f){
-        printf("População não pode ser zero para calcular o PIB per capita.\n");
-        return 0.0f;
+    if(populacao == 0 || PIB == 0.0){
+        printf("Não é possível fazer uma divisão por 0\n");
+        return 0.0;
     } else {
-        return (PIB * 1000000000.0f) / populacao;
+        return (PIB * 1000000000.0) / (double) populacao;
     }
 }
 
 // Função que calcula o super poder da cidade
-float CalculoSuperPoder(
+double CalculoSuperPoder(
      unsigned long int populacao,
-     float area,
-     float PIB,
+     double area,
+     double PIB,
      int pontos_turisticos,
-     float densidade_populacional,
-     float PIB_per_capita
+     double densidade_populacional,
+     double PIB_per_capita
 ){
     //super poder é a soma de todos os atributos e do inverso da densidade populacional
-    return (populacao + area + PIB + pontos_turisticos + (1/densidade_populacional) + PIB_per_capita);
+    return ( (double) populacao + area + PIB + (double) pontos_turisticos + (1.0/densidade_populacional) + PIB_per_capita);
 }
 
-float CompararCartas(
-    float valor1,
-    float valor2,
+int CompararCartas(
+    double valor1,
+    double valor2,
     int invertido
 ){
     //compara os valores das cartas
@@ -120,13 +120,13 @@ int main() {
     char estado1, codigo_carta1[20], cidade1[50];
     unsigned long int populacao1;
     int pontos_turisticos1;
-    float area1, PIB1, densidade_populacional1, PIB_per_capita1, super_poder1;
+    double area1, PIB1, densidade_populacional1, PIB_per_capita1, super_poder1;
     
     //variáveis da carta 2
     char estado2, codigo_carta2[20], cidade2[50];
     unsigned long populacao2;
     int pontos_turisticos2;
-    float area2, PIB2, densidade_populacional2, PIB_per_capita2, super_poder2;
+    double area2, PIB2, densidade_populacional2, PIB_per_capita2, super_poder2;
     
     //Cadastro das Cartas:
     // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
